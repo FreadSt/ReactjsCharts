@@ -1,6 +1,19 @@
 .App {
   align-items: center;
   text-align: center;
-  padding: 0px 30px 30px 30px;
+  font-family: 'Poppins', sans-serif;  
+  .first, .second{
+    background-color: #bebdbd;
+    padding: 5px;
+    border-style: none;
+    margin: 10px;
+    border-radius: 7px;
+  }
+  .switch{
+    margin: 20px;
+  }
+  .charts{
+    border-radius: 12px;
+    box-shadow: "0px 12px 12px 4px" rgb(3, 3, 3);
+  }
 }
-

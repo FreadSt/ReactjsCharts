@@ -1,31 +1,49 @@
-import React,{useState, useEffect, useCallback} from "react";
-import { Bar } from 'react-chartjs-2';
-import { debounce } from "lodash";
+import React,{useState, useEffect} from "react";
+import { Switch } from "@mui/material";
+import {Bar, Line} from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
+  PointElement,
   Title,
   Tooltip,
   Legend,
+  LineElement,
 } from 'chart.js';
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
+  PointElement,
+  LineElement,
   BarElement,
   Title,
   Tooltip,
   Legend
 );
 
-const NewChart = () => {
+const LineChart = () => {
 
     const [labels, setLabels] = useState('')
-    
     const [values, setValues] = useState('')
-
+    const [toggle, setToggle] = useState(false)
+    const [data, setData] = useState(
+        {
+            labels:[],
+            datasets:[
+                {
+                    data: [],
+                    label: "Data",
+                    borderColor: "#3333ff",
+                    backgroundColor: "rgba(0, 0, 255, 0.5)",
+                    fill: true
+                }
+            ]
+        }
+    );
+ 
     useEffect(() => {
        const labelsArr = labels.split(',')
        if(labelsArr.length) {
@@ -42,39 +60,13 @@ const NewChart = () => {
         }
     },[values])
 
-    const [data, setData] = useState(
-        {
-            labels:[],
-            datasets:[
-                {
-                    data: [],
-                    label: "Data",
-                    borderColor: "#3333ff",
-                    backgroundColor: "rgba(0, 0, 255, 0.5)",
-                    fill: true
-                }
-            ]
-        }
-    );
-
-    const barChartData = {
-        labels: ["January", "February", "March", "April", "May"],
-        datasets: [
-          {
-            data: [1,5,10,1,2],
-            label: "Data",
-            borderColor: "#3333ff",
-            backgroundColor: "rgba(0, 0, 255, 0.5)",
-            fill: true
-          }
-        ]
-    };
+    const toggleTrueFalse = () => setToggle(!toggle);
 
     return(
-        <div>
+        <div className="inputs">
             <form  noValidate>
                 <input
-                    name="first"
+                    className="first"
                     value={labels}
                     onChange={(e) => setLabels(e.target.value)}
                     style={{width:"250px", height:"30px"}}
@@ -84,7 +76,7 @@ const NewChart = () => {
                 />
                 <input
                     value={values}
-                    name="second"
+                    className="second"
                     onChange={(e) => setValues(e.target.value)}
                     style={{width:"250px", height:"30px"}}
                     placeholder="Number"
@@ -92,27 +84,26 @@ const NewChart = () => {
                     required                     
                 />
             </form>
-
-            <Bar
-                width={130}
-                height={50}
-                /*options={{
-                    title: {
-                        display: true,
-                        text: "COVID-19 Cases of Last 3 Months",
-                        fontSize: 15
-                    },
-                    legend: {
-                        display: true, //Is the legend shown?
-                        position: "top" //Position of the legend.
-                    }
-                }}
-                */
-                data={data}
+            
+            <Switch onClick={toggleTrueFalse}
+                    className="switch"
             />
+            
+            <div className="charts">
+                
+                {toggle ? <Bar width={130}
+                            height={65}
+                            data={data}
+                                        /> : 
+                                            <Line width={130}
+                                                height={65}
+                                                data={data}
+                                                style={{backgroundColor:"#bebdbd"}}
+                                                            />
+            }
         </div>
-    
+        </div>
     )
 }
 
-export default NewChart;
+export default LineChart;

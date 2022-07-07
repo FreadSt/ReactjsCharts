@@ -1,12 +1,14 @@
 import './App.scss';
-import NewChart from './Components/NewChart';
 import React from 'react';
+import BothCharts from './Components/BothCharts';
 
 function App() {
   return (
     <div className='App'>
-      <h1>CHART</h1>
-      <NewChart/>
+      <h1 className='title'>CHART</h1>
+      <div>
+       <BothCharts/>
+      </div>
     </div>
   );
 }
