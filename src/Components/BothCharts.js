@@ -69,7 +69,7 @@ const LineChart = () => {
                     className="first"
                     value={labels}
                     onChange={(e) => setLabels(e.target.value)}
-                    style={{width:"250px", height:"30px"}}
+                    style={{width:"250px", height:"25px", padding:"10px"}}
                     placeholder="Your Name"
                     type="text"
                     required                     
@@ -78,7 +78,7 @@ const LineChart = () => {
                     value={values}
                     className="second"
                     onChange={(e) => setValues(e.target.value)}
-                    style={{width:"250px", height:"30px"}}
+                    style={{width:"250px", height:"25px", padding:"10px"}}
                     placeholder="Number"
                     type="text"
                     required                     
@@ -92,11 +92,11 @@ const LineChart = () => {
             <div className="charts">
                 
                 {toggle ? <Bar width={130}
-                            height={65}
+                            height={42}
                             data={data}
                                         /> : 
                                             <Line width={130}
-                                                height={65}
+                                                height={42}
                                                 data={data}
                                                 style={{backgroundColor:"#bebdbd"}}
                                                             />
