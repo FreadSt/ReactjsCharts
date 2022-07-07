@@ -5,7 +5,7 @@ import BothCharts from './Components/BothCharts';
 function App() {
   return (
     <div className='App'>
-      <h1 className='title'>CHART</h1>
+      <h1 className='title'>CHARTS</h1>
       <div>
        <BothCharts/>
       </div>
